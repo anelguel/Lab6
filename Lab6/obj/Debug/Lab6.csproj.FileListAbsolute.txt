@@ -1,0 +1,6 @@
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\bin\Debug\Lab6.exe.config
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\bin\Debug\Lab6.exe
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\bin\Debug\Lab6.pdb
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\obj\Debug\Lab6.csprojResolveAssemblyReference.cache
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\obj\Debug\Lab6.exe
+c:\users\max guel\documents\visual studio 2017\Projects\Lab6\Lab6\obj\Debug\Lab6.pdb
