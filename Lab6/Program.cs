@@ -5,80 +5,74 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab6
+/*Lab 6
+ * Task: Translate text from English to Pig Latin.
+ * The application will:
+ * 1. Prompt for user input.
+ * 2. Translate the test to Pig Latin and display it to the console.
+ * 3. Ask the user if he/she wants to continue.
+ * Build specifications:
+ * 1. Convert each word to lower case before translating.
+ * 2. If a word starts with a vowel, add "way" to the end.
+ * 3. If a word starts with a consonant, move all the consonants that appear before the first vowel to the end of the word, then add "ay" to the end.
+*/
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            bool run = true;
-            while (run == true)
-            { 
-                Console.WriteLine("Welcome to the Pig Latin Translator!");
-            Console.WriteLine("Enter a word to be translated:");
-            string word = Console.ReadLine();//reads back user input
-            word = word.ToLower();//brings input word to lowercase
-            List<char> vowels = new List<char>() { 'a', 'o', 'e', 'u', 'i' };//declares a list of vowels
-            char letters = word.ToCharArray()[0];//creates an array list of the word that was inputted, pulls the FIRST word of array
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			bool run = true;
+			while (run == true)
+			{
+				Console.WriteLine("Welcome to the Pig Latin Translator! \nPlease enter a line to be translated:");
+				string input = Console.ReadLine().ToLower();
 
-                if (vowels.Contains(letters))//if the first letter is a vowel
-                {
-                    word += "way";
-                    Console.WriteLine(word);
-                }
-                else  //else if the first letter not a vowel
-                {
-                    string consonant = "";
-                    string finalWord = "";
-                    char[] letters2 = word.ToCharArray();
-                    foreach (char l in letters2)
-                    {
-                        if (!vowels.Contains(l))
-                        {
-                            consonant += l;
-                        }
-                        else
-                        {
-                            int vowellocation = word.IndexOf(l); // index returns number of vowel location
-                            int length = word.Length - vowellocation;
-                            finalWord = word.Substring(vowellocation, length);
-                            finalWord += consonant;
-                            finalWord += "ay";
-                            break;
+				var words = input.Split(' ');
+				var pigWords = new List<string>();
 
-                        }
-                    }
-                    Console.WriteLine(finalWord);
-                }
-                run = Continue();
-            }
-            
-        }
-        
+				foreach (string word in words)
+				{
+					string firstLetter = word.Substring(0, 1);
+					string restOfWord = word.Substring(1, word.Length - 1);
 
-        public static bool Continue()
-        {
-            Console.WriteLine("Do you wish to Continue? y/n");
-            string input = Console.ReadLine();
-            input = input.ToLower();
-            bool goOn;
-            if (input == "y")
-            {
-                goOn = true;
-            }
-            else if (input == "n")
-            {
-                goOn = false;
-            }
-            else
-            {
+					if (firstLetter == "a" || firstLetter == "e" || firstLetter == "i" || firstLetter == "o" || firstLetter == "u")
+					{
+						pigWords.Add(word + "way");
+					}
+					else
+					{
+						pigWords.Add(restOfWord + firstLetter + "ay");
+					}
+				}
 
-                Console.WriteLine("I don't understand that, let's try again");
-                goOn = Continue();
-            }
+				var pigSentence = string.Join(" ", pigWords);
 
-            return goOn;
-        }
-    }
+				Console.WriteLine(pigSentence);
+				Console.ReadLine();
+				run = Continue();
+			}
+
+		}
+		public static bool Continue()
+		{
+			Console.WriteLine("Do you wish to continue? y/n");
+			string input = Console.ReadLine();
+			input = input.ToLower();
+			bool goOn;
+			if (input == "y")
+			{
+				goOn = true;
+			}
+			else if (input == "n")
+			{
+				goOn = false;
+			}
+			else
+			{
+				Console.WriteLine("I don't understand that, let's try again");
+				goOn = Continue();
+			}
+			return goOn;
+		}
+	}
 }
-
-        
